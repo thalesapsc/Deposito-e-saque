@@ -1,29 +1,40 @@
 import 'dart:io';
 
 main() {
-  print("SALDO INICIAL:");
-  var saldo = 100;
+  bool condicao = true;
+  while (condicao) {
+    print('DIGITE 1 PARA INICIAR');
+    var text = stdin.readLineSync();
+    if (text == "sair") {
+      print('PROGRAMA FINALIZADO');
+      condicao = false;
+    } else {
+      print('SALDO ATUAL');
+      var saldo = 100;
+      print(saldo);
+      print('DIGITE 1 PARA DEPOSITO OU 2 PARA SAQUE');
 
-  print(saldo);
-  print("\n");
+      var num1 = stdin.readLineSync();
+      var operacao = int.parse(num1!);
 
-  print('DIGITE 1 PARA SAQUE OU 2 PARA DEPOSITO');
-
-  print("DIGITE VALOR DO DEPOSITO:");
-
-  var input = stdin.readLineSync();
-  var deposito = int.parse(input!);
-
-  int novoSaldo = operacaoDeposito(deposito, saldo);
-  saldo = novoSaldo;
-
-  print("Saldo Atualizado:" + saldo.toString());
-}
-
-int operacaoDeposito(int valorDeposito, int saldoAtual) {
-  return saldoAtual + valorDeposito;
-}
-
-int operacaoSaque(int valorSaque, int saldoAtual) {
-  return saldoAtual - valorSaque;
+      if (operacao == 1) {
+        print('Deposito');
+      } else if (operacao == 2) {
+        print("Saque");
+      }
+      if (operacao == 1) {
+        print("DIGITE O VALOR DO DEPOSITO");
+        var num2 = stdin.readLineSync();
+        var operacaoDeposito = int.parse(num2!);
+        var saldofinal = saldo + operacaoDeposito;
+        print("Saldo atualizado: " + saldofinal.toString());
+      } else if (operacao == 2) {
+        print('DIGITE O VALOR DO SAQUE');
+        var num3 = stdin.readLineSync();
+        var operacaoSaque = int.parse(num3!);
+        var saldofinal2 = saldo - operacaoSaque;
+        print("SALDO ATUALIZADO: " + saldofinal2.toString());
+      }
+    }
+  }
 }
